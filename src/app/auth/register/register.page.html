@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">
+  <div class="flex-center">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title style="text-align: center;">Login</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form action="" [formGroup]="registerForm" (ngSubmit)="register()">
+          <ion-list>
+            <ion-item>
+              <ion-input label="Type a username" required="true" labelPlacement="floating" type="text" placeholder="Name" formControlName = "name"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Phone Number" required="true" labelPlacement="floating" type="Phone" placeholder="Type your number" formControlName = "phone"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Email" required="true" labelPlacement="floating" type="email" placeholder="Enter your email" formControlName = "email"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Password" required="true" labelPlacement="floating" type="password" placeholder="Enter your password" formControlName = "password"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-input label="Confirm Password" required="true" labelPlacement="floating" type="password" placeholder="Retype your password" formControlName = "confpass"></ion-input>
+            </ion-item>
+            <ion-button color="medium" fill="solid" size="full" type="submit" >Register</ion-button>
+            <ion-button color="medium" fill="outline" size="full" routerLink="/auth/login">Login</ion-button>
+          </ion-list>
+        </form>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+

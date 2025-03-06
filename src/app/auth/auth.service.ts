@@ -8,17 +8,16 @@ import { tap, catchError } from 'rxjs/operators';
 })
 export class AuthService {
   private loggedIn = new BehaviorSubject<boolean>(false);
-  private userData: any = null;
+  private userData: any = {};
 
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post('https://dummyjson.com/auth/login', { username, password }).pipe(
       tap((response) => {
-        console.log("API Response:", response);
         if (response) {
-          this.userData = response;
-          console.log("User data stored in AuthService:", this.userData);
+          this.userData = ({...response, password});
+          console.log("Inside login function", this.userData);
           this.loggedIn.next(true);
         }
       }),
@@ -30,12 +29,11 @@ export class AuthService {
   }
 
   setUserData(data: any) {
-    console.log("Setting user data:", data);
     this.userData = data;
   }
 
   getUserData() {
-    console.log("Retrieving user data:", this.userData);
+    console.log("Inside getUserData", this.userData);
     return this.userData ?? {};
   }
   isLoggedIn() : boolean {
@@ -54,7 +52,6 @@ export class AuthService {
     });
   }
   logout() {
-    console.log("Logging out, clearing user data.");
     this.loggedIn.next(false);
     this.userData = null;
   }

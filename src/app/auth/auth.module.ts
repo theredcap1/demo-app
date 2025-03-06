@@ -12,6 +12,8 @@ import { provideHttpClient } from '@angular/common/http';
   imports: [
     CommonModule,
     AuthRoutingModule,
+    LoginPageModule,
+    RegisterPageModule,
   ],
   providers: [provideHttpClient()]
 })

@@ -31,8 +31,6 @@ export class LoginPage {
     try {
       this.data = await firstValueFrom(this.auth.login(String(user), String(password)));
 
-      console.log("Login successful, received data:", this.data);
-
       if (this.data) {
         this.auth.setUserData(this.data);
         this.auth.setIsLoggedIn(true);

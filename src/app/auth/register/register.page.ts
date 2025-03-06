@@ -11,7 +11,7 @@ import { firstValueFrom } from 'rxjs';
   standalone: false
 })
 export class RegisterPage {
-  private router: Router = inject(Router); // Consistent injection pattern
+  private router: Router = inject(Router);
 
   registerForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),

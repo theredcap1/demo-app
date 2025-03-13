@@ -35,7 +35,7 @@ export class LoginPage {
         this.auth.setUserData(this.data);
         console.log(this.data)
         localStorage.setItem('isLoggedIn', 'true');
-        await this.router.navigate(['/dashboard']);
+        await this.router.navigate(['/']);
       } else {
         new Error("Invalid response data");
       }

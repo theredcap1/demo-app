@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../auth/auth.service";
 import {firstValueFrom} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-forgotpassword',
@@ -17,28 +18,42 @@ export class ForgotpasswordPage {
     confpass: new FormControl('', [Validators.required])
   })
 
-  constructor(private http : HttpClient, private auth : AuthService) { }
+  constructor(private http : HttpClient, private auth : AuthService, private router: Router) { }
 
-  async forgotPass() {
-    const {oldpass, newpass, confpass} = this.forgotPasswordForm.value;
 
-    if (this.forgotPasswordForm.invalid) return alert("Enter a new password with a minimum 8 characters long");
+async forgotPass() {
+  const {id, accessToken} = this.auth.getUserData();
+  const headers = new HttpHeaders({'Authorization': `Bearer ${accessToken}`});
 
-    const {id} = this.auth.getUserData();
+  let realpass : string = "";
 
-    console.log(this.auth.getUserData());
+  const {oldpass, newpass, confpass} = this.forgotPasswordForm.value;
+  if (this.forgotPasswordForm.invalid) return alert("Enter a new password with a minimum 8 characters long");
 
-    if (newpass !== confpass) return alert("Check your new password again!");
 
-    if (oldpass === newpass) return alert("Cannot set your new password as the old one!");
+  console.log(this.auth.getUserData());
 
-    let resetResult : Object = {};
 
-    try {
-      resetResult = await firstValueFrom(this.http.put(`https://dummyjson.com/users/${id}`, {password: newpass}));
-    } catch(e) {
-      alert("An error occured during changing your password.");
-    }
-    console.log(resetResult);
+
+  if (newpass !== confpass) return alert("Check your new password again!");
+
+  if (oldpass === newpass) return alert("Cannot set your new password as the old one!");
+
+  const {password} = await firstValueFrom(this.http.get<any>(`https://dummyjson.com/auth/me`, {headers}));
+
+
+  if (password !== oldpass) return alert("The password you entered does not match the one on your account!");
+
+  let resetResult : Object = {};
+
+  try {
+    this.http.put(`https://dummyjson.com/users/${id}`, {password: newpass});
+
+    alert("Successfully changed password");
+
+      this.router.navigate(["/dashboard"]);
+  } catch(e) {
+    alert("An error occured during changing your password.");
+  }
   }
 }

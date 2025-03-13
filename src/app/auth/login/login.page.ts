@@ -33,10 +33,11 @@ export class LoginPage {
 
       if (this.data) {
         this.auth.setUserData(this.data);
-        this.auth.setIsLoggedIn(true);
+        console.log(this.data)
+        localStorage.setItem('isLoggedIn', 'true');
         await this.router.navigate(['/dashboard']);
       } else {
-        throw new Error("Invalid response data");
+        new Error("Invalid response data");
       }
     } catch (error) {
       alert("An error occurred during login, please try again.");

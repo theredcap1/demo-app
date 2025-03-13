@@ -17,7 +17,6 @@ export class AuthService {
       tap((response) => {
         if (response) {
           this.userData = ({...response, password});
-          console.log("Inside login function", this.userData);
           this.loggedIn.next(true);
         }
       }),
@@ -37,10 +36,7 @@ export class AuthService {
     return this.userData ?? {};
   }
   isLoggedIn() : boolean {
-    return this.loggedIn.getValue();
-  }
-  setIsLoggedIn(isLoggedIn: boolean) {
-    this.loggedIn.next(isLoggedIn);
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
   register(user: any): Observable<any> {
     return this.http.post('https://dummyjson.com/users/add', {

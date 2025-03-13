@@ -22,13 +22,13 @@ export class ForgotpasswordPage {
   async forgotPass() {
     const {oldpass, newpass, confpass} = this.forgotPasswordForm.value;
 
-    if (this.forgotPasswordForm.invalid) return alert("Check your new password");
+    if (this.forgotPasswordForm.invalid) return alert("Enter a new password with a minimum 8 characters long");
 
     const {id} = this.auth.getUserData();
 
     console.log(this.auth.getUserData());
 
-    if (newpass !== confpass || !newpass) return alert("Check your new password again!");
+    if (newpass !== confpass) return alert("Check your new password again!");
 
     if (oldpass === newpass) return alert("Cannot set your new password as the old one!");
 

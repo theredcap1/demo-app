@@ -2,13 +2,12 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "./auth/auth.guard";
 import {AppComponent} from "./app.component";
+import {DashboardPage} from "./dashboard/dashboard.page";
+import {ForgotpasswordPage} from "./forgotpassword/forgotpassword.page";
+import {HomePage} from "./home/home.page";
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AppComponent,
-  },
   {
     path: 'auth',
     loadChildren: async () => {
@@ -19,7 +18,22 @@ const routes: Routes = [
   {
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
+    component: DashboardPage,
     canActivate: [AuthGuard],
+  },
+  {
+    path: '',
+    component: HomePage,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'change-password',
+    component: ForgotpasswordPage,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   }
 ];
 

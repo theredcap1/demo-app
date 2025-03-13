@@ -15,6 +15,7 @@ export class DashboardPage implements OnInit {
 
   ngOnInit() {
     this.data = this.auth.getUserData();
+
     if (!this.data || Object.keys(this.data).length === 0) {
       console.log("No user data found, redirecting to login.");
       this.router.navigate(['/auth/login']);

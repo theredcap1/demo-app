@@ -52,4 +52,6 @@ export class HomePage implements OnInit {
   handleClick(id: number) {
     this.router.navigate([`/user/${id}`])
   }
+
+  protected readonly String = String;
 }

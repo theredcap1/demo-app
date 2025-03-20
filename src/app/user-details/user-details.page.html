@@ -3,12 +3,16 @@
     <ion-img src="{{userDetails.image}}" alt=""></ion-img>
     <ion-card-title>{{userDetails.firstName}} {{userDetails.lastName}} {{userDetails.maidenName}}</ion-card-title>
     <ion-card-subtitle>{{userDetails.age}}, &#64;{{userDetails.username}}</ion-card-subtitle>
+    <ion-card-subtitle><a href="mailto:{{userDetails.email}}">{{userDetails.email}}</a></ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
     <span *ngIf="userDetails.isMale">He</span><span *ngIf="!userDetails.isMale">She</span> attended <b>{{userDetails.university}}</b> and currently works at <b>{{userDetails.company.name}}</b> in the {{userDetails.company.department}} department as a <b>{{userDetails.company.title}}</b>
     <br>
     <span *ngIf="userDetails.isMale">He</span><span *ngIf="!userDetails.isMale">She</span> measures {{userDetails.height}} cm and weighs at {{userDetails.weight}} kg
+    <br>
+
+    <ion-icon name="create-outline" style="float: right; margin: 1.5rem; cursor: pointer;" [routerLink]="'edit'"></ion-icon>
   </ion-card-content>
 </ion-card>
 
-<p *ngIf="userDetails.firstName=== ''" style="text-align: center;">Loading...</p>
+<p *ngIf="userDetails.firstName === ''" style="text-align: center;">Loading...</p>

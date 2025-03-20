@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UsersService} from "../users.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../home/User.model";
 
 @Component({
@@ -29,7 +29,7 @@ export class UserDetailsPage implements OnInit {
     university: "",
     image: "",
   }
-  constructor(protected user : UsersService, private route : ActivatedRoute) { }
+  constructor(protected user : UsersService, private route : ActivatedRoute, private router : Router) { }
   private id : number = 0;
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get('id') || ''));

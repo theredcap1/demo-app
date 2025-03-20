@@ -18,12 +18,12 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
     component: DashboardPage,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: '',
     component: HomePage,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'change-password',
@@ -39,6 +39,11 @@ const routes: Routes = [
     loadChildren: () => import('./user-details/user-details.module').then(m => m.UserdetailsPageModule),
     // canActivate: [AuthGuard]
   },
+  {
+    path: 'user/:id/edit',
+    loadChildren: () => import('./edit-user/edit-user.module').then( m => m.EditUserPageModule)
+  },
+
 ];
 
 @NgModule({

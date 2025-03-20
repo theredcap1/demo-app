@@ -18,7 +18,9 @@ export class UsersService {
     this.http.get<any>('https://dummyjson.com/users').subscribe(res => {
       res.users.map((user : any) => {
         const isMale = user.gender == 'male';
-        this.users.push({id: user.id, firstName: user.firstName, lastName: user.lastName, age: user.age, address : user.address, username: user.username, hair: user.hair, isMale: isMale, key: user.id});
+        this.users.push({id: user.id, firstName: user.firstName, lastName: user.lastName, age: user.age, address : user.address, username: user.username, hair: {
+            color: user.hair.color.toLowerCase(), type: user.hair.type.toLowerCase()
+          }, isMale: isMale, key: user.id});
       });
     });
     console.log("this.users from service", this.users);

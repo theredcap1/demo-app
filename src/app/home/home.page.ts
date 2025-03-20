@@ -31,7 +31,6 @@ export class HomePage implements OnInit {
     }
     this.users = this.user.getUsers();
     console.log("allUsers",this.users);
-  // execution stops here, WHY ?
     this.users = this.users.filter((user) => {
       console.log("we out here");
       const fields = [

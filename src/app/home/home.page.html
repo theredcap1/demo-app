@@ -11,7 +11,11 @@
     </ion-toolbar>
   </ion-header>
   <ion-grid>
-    @for (user of this.users; track user.id) {
+    <ion-row>
+      <ion-input label="Enter name or address" [(ngModel)]="searchQuery" type="text" maxlength="65vw"></ion-input>
+      <ion-button (click)="handleSearch()">Search</ion-button>
+    </ion-row>
+    @for (user of this.users; track user.id + " - " + $index) {
       <ion-card>
         <ion-card-header>
           <ion-card-title>{{user.firstName}} {{user.lastName}}</ion-card-title>

@@ -1,8 +1,8 @@
 export class User {
   id: number;
-  firstName: string = "";
-  lastName: string = "";
-  age: number = -1;
+  firstName: string;
+  lastName: string;
+  age: number;
   address = {
     address: "",
     city: "",
@@ -17,6 +17,7 @@ export class User {
     type: ""
   }
   isMale: boolean;
+  key: number;
 
   constructor(id: number, firstName: string, lastName: string, age: number, address: any, username : string, hair: {color: string, type: string}, isMale: boolean) {
     this.id = id;
@@ -27,5 +28,6 @@ export class User {
     this.username = username;
     this.hair = hair;
     this.isMale = isMale;
+    this.key = id;
   }
 }

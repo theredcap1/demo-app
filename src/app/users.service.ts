@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "./home/User.model";
 
@@ -6,8 +6,8 @@ import {User} from "./home/User.model";
   providedIn: 'root'
 })
 export class UsersService {
+
   getUsers(): User[] {
-    this.fetchUsers();
     return this.users;
   }
 
@@ -18,11 +18,9 @@ export class UsersService {
     this.http.get<any>('https://dummyjson.com/users').subscribe(res => {
       res.users.map((user : any) => {
         const isMale = user.gender == 'male';
-        console.log(typeof user.gender);
-        console.log(user.firstName + " " + user.gender);
-        this.users.push({id: user.id, firstName: user.firstName, lastName: user.lastName, age: user.age, address : user.address, username: user.username, hair: user.hair, isMale: isMale});
-        this.users.map(() => console.log(isMale));
+        this.users.push({id: user.id, firstName: user.firstName, lastName: user.lastName, age: user.age, address : user.address, username: user.username, hair: user.hair, isMale: isMale, key: user.id});
       });
     });
+    console.log("this.users from service", this.users);
   }
 }

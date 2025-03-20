@@ -12,13 +12,24 @@ export class User {
   hair: {
     color: string,
     type: string;
-  } = {
-    color: "",
-    type: ""
-  }
+  };
   isMale: boolean;
   key: number;
-
+  maidenName: string = "";
+  university : string = "";
+  email : string = "";
+  height : number = 0;
+  weight : number = 0;
+  company : {
+    department: string,
+    name: string,
+    title: string
+  } = {
+    department: "",
+    name: "",
+    title: ""
+  }
+  image: string = "";
   constructor(id: number, firstName: string, lastName: string, age: number, address: any, username : string, hair: {color: string, type: string}, isMale: boolean) {
     this.id = id;
     this.firstName = firstName;

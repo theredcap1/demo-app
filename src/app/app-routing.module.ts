@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import {AuthGuard} from "./auth/auth.guard";
-import {AppComponent} from "./app.component";
 import {DashboardPage} from "./dashboard/dashboard.page";
 import {ForgotpasswordPage} from "./forgotpassword/forgotpassword.page";
 import {HomePage} from "./home/home.page";
@@ -29,12 +28,17 @@ const routes: Routes = [
   {
     path: 'change-password',
     component: ForgotpasswordPage,
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  }
+  },
+  {
+    path: 'user/:id',
+    loadChildren: () => import('./user-details/user-details.module').then(m => m.UserdetailsPageModule),
+    // canActivate: [AuthGuard]
+  },
 ];
 
 @NgModule({

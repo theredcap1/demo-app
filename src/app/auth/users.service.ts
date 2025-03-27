@@ -24,7 +24,7 @@ export class UsersService {
       res.users.map((user : any) => {
         this.users.push({
           ...user,
-          gender: user.gender == 'male',
+          isMale: user.gender.toLowerCase() == 'male',
           hair: {
             color: user.hair.color.toLowerCase(),
             type: user.hair.type.toLowerCase()

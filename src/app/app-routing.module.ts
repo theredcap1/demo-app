@@ -33,17 +33,17 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'user/:id',
     loadChildren: () => import('./user-details/user-details.module').then(m => m.UserdetailsPageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
   {
     path: 'user/:id/edit',
     loadChildren: () => import('./edit-user/edit-user.module').then( m => m.EditUserPageModule),
-    // canActivate: [AuthGuard]
+    canActivate: [AuthGuard]
   },
 ];
 

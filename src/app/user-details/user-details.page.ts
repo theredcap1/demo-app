@@ -33,13 +33,24 @@ export class UserDetailsPage implements OnInit {
   private id : number = 0;
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get('id') || ''));
-    console.log(this.id);
     this.user.fetchUserDetails(this.id).subscribe((res : any) => this.userDetails = res);
-    console.log(this.userDetails);
   }
 
+  alertButtons = [
+    {
+      text: 'Cancel',
+      role: 'cancel',
+      handler: () => {},
+    },
+    {
+      text: 'Delete',
+      role: 'destructive',
+      handler: () => {
+        this.delete();
+      },
+    }
+  ];
   delete() {
     this.user.deleteUser(this.id).subscribe(() => this.router.navigate(['home']));
-    console.log("Deleted successfully");
   }
 }

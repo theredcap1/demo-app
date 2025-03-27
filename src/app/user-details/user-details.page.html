@@ -6,11 +6,17 @@
     <ion-card-subtitle><a href="mailto:{{userDetails.email}}">{{userDetails.email}}</a></ion-card-subtitle>
   </ion-card-header>
   <ion-card-content>
-    <span *ngIf="userDetails.isMale">He</span><span *ngIf="!userDetails.isMale">She</span> attended <b>{{userDetails.university}}</b> and currently works at <b>{{userDetails.company.name}}</b> in the {{userDetails.company.department}} department as a <b>{{userDetails.company.title}}</b>
+    <span>{{userDetails.isMale | gender}}</span> attended <b>{{userDetails.university}}</b> and currently works at <b>{{userDetails.company.name}}</b> in the {{userDetails.company.department}} department as a <b>{{userDetails.company.title}}</b>
     <br>
-    <span *ngIf="userDetails.isMale">He</span><span *ngIf="!userDetails.isMale">She</span> measures {{userDetails.height}} cm and weighs at {{userDetails.weight}} kg
+    <span>{{userDetails.isMale | gender}}</span> measures {{userDetails.height}} cm and weighs at {{userDetails.weight}} kg
     <br>
-    <ion-icon name="trash-outline" style="float: right; margin: 1.5rem; cursor: pointer;" (click)="delete()"></ion-icon>
+    <ion-icon name="trash-outline" style="float: right; margin: 1.5rem; cursor: pointer;" id="delete"></ion-icon>
+      <ion-alert
+              trigger="delete"
+              header="Warning"
+              message="Are you really sure you want to delete {{userDetails.firstName}} {{userDetails.lastName}}?"
+              [buttons]="alertButtons"
+      />
     <ion-icon name="create-outline" style="float: right; margin: 1.5rem; cursor: pointer;" [routerLink]="'edit'"></ion-icon>
 
   </ion-card-content>

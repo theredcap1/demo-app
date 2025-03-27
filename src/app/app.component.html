@@ -1,6 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" style="width: 0%">
+    <ion-menu contentId="main-content" type="overlay" style="width: 0" *ngIf="this.router.url !== '/auth/login'">
       <ion-content>
         <ion-list>
           <ion-list-header>Inbox</ion-list-header>
@@ -10,6 +10,7 @@
             <ion-item routerDirection="root" routerLink="/change-password"><ion-label>Change Password</ion-label></ion-item>
           </ion-menu-toggle>
         </ion-list>
+        <ion-button expand="full" color="light" (click)="logout()">Logout</ion-button>
       </ion-content>
     </ion-menu>
 

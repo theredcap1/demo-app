@@ -1,17 +1,27 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {User} from "../home/User.model";
+import {ToastController} from "@ionic/angular";
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsersService {
 
+  async presentToast(successfullyDeleted: string) {
+    const toast = await this.toastController.create({
+      message: successfullyDeleted,
+      duration: 2000
+    });
+    await toast.present();
+  }
+
   getUsers(): User[] {
     return this.users;
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastController: ToastController) { }
 
   private users : User[] = [];
 
@@ -39,6 +49,7 @@ export class UsersService {
   }
 
   deleteUser(id: number) {
+    this.presentToast("Successfully deleted!");
     return this.http.delete<any>('https://dummyjson.com/users/' + id);
   }
 }

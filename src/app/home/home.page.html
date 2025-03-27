@@ -19,7 +19,7 @@
           <ion-card-subtitle>{{user.age}}, &#64;{{user.username}}</ion-card-subtitle>
         </ion-card-header>
         <ion-card-content>
-          <span *ngIf="user.isMale">He</span><span *ngIf="!user.isMale">She</span> has a {{user.hair.type}} {{user.hair.color}} hair and <span *ngIf="user.isMale">he</span> <span *ngIf="!user.isMale">she</span> lives in {{user.address.address}}, {{user.address.city}}, {{user.address.stateCode}}
+          <span>{{user.isMale | gender}}</span> has a {{user.hair.type}} {{user.hair.color}} hair and <span>{{user.isMale | gender | lowercase}}</span> lives in {{user.address.address}}, {{user.address.city}}, {{user.address.stateCode}}
         </ion-card-content>
       </ion-card>
     } @empty {

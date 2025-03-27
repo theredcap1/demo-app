@@ -1,23 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {BehaviorSubject, Observable, throwError} from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
+import {SessionManagementService} from "./session-management.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private loggedIn = new BehaviorSubject<boolean>(false);
   private userData: any = {};
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private session : SessionManagementService) {}
 
   login(username: string, password: string): Observable<any> {
     return this.http.post('https://dummyjson.com/auth/login', { username, password }).pipe(
       tap((response) => {
         if (response) {
-          this.userData = ({...response, password});
-          this.loggedIn.next(true);
+          this.userData = ({...response});
         }
       }),
       catchError((error) => {
@@ -32,11 +31,7 @@ export class AuthService {
   }
 
   getUserData() {
-    console.log("Inside getUserData", this.userData);
     return this.userData ?? {};
-  }
-  isLoggedIn() : boolean {
-    return localStorage.getItem('isLoggedIn') === 'true';
   }
   register(user: any): Observable<any> {
     return this.http.post('https://dummyjson.com/users/add', {
@@ -48,7 +43,6 @@ export class AuthService {
     });
   }
   logout() {
-    this.loggedIn.next(false);
-    this.userData = null;
+    this.session.endSession();
   }
 }

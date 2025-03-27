@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {UsersService} from "../users.service";
+import {UsersService} from "../auth/users.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../home/User.model";
 
@@ -34,7 +34,7 @@ export class UserDetailsPage implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get('id') || ''));
     console.log(this.id);
-    this.user.fetchUserDetails(this.id).subscribe(res => this.userDetails = res);
+    this.user.fetchUserDetails(this.id).subscribe((res : any) => this.userDetails = res);
     console.log(this.userDetails);
   }
 

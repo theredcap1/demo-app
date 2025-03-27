@@ -1,3 +1,5 @@
+import {image, key} from "ionicons/icons";
+
 export class User {
   id: number;
   firstName: string;
@@ -30,7 +32,19 @@ export class User {
     title: ""
   }
   image: string = "";
-  constructor(id: number, firstName: string, lastName: string, age: number, address: any, username : string, hair: {color: string, type: string}, isMale: boolean) {
+
+  constructor(id: number, firstName: string, lastName: string, age: number, address: {
+    address: string;
+    city: string;
+    stateCode: string
+  }, username: string, hair: {
+    color: string;
+    type: string
+  }, isMale: boolean, key: number, maidenName: string, university: string, email: string, height: number, weight: number, company: {
+    department: string;
+    name: string;
+    title: string
+  }, image: string) {
     this.id = id;
     this.firstName = firstName;
     this.lastName = lastName;
@@ -39,6 +53,13 @@ export class User {
     this.username = username;
     this.hair = hair;
     this.isMale = isMale;
-    this.key = id;
+    this.key = key;
+    this.maidenName = maidenName;
+    this.university = university;
+    this.email = email;
+    this.height = height;
+    this.weight = weight;
+    this.company = company;
+    this.image = image;
   }
 }

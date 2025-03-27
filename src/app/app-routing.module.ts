@@ -18,17 +18,17 @@ const routes: Routes = [
     path: 'dashboard',
     loadChildren: () => import('./dashboard/dashboard.module').then( m => m.DashboardPageModule),
     component: DashboardPage,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: '',
     component: HomePage,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'change-password',
     component: ForgotpasswordPage,
-    // canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'home',
@@ -36,7 +36,7 @@ const routes: Routes = [
   },
   {
     path: 'user/:id',
-    loadChildren: () => import('./user-details/user-details.module').then(m => m.UserdetailsPageModule),
+    loadChildren: () => import('./auth/user-details/user-details.module').then(m => m.UserdetailsPageModule),
     // canActivate: [AuthGuard]
   },
   {

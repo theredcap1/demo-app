@@ -37,17 +37,8 @@ const routes: Routes = [
   },
   {
     path: 'user/:id',
-<<<<<<< HEAD
-    loadChildren: () => import('./auth/user-details/user-details.module').then(m => m.UserdetailsPageModule),
-    // canActivate: [AuthGuard]
-=======
-<<<<<<< HEAD
     loadChildren: () => import('./user-details/user-details.module').then(m => m.UserdetailsPageModule),
-=======
-    loadChildren: () => import('./auth/user-details/user-details.module').then(m => m.UserdetailsPageModule),
->>>>>>> 78a8d1b (feat(sessions): Add JWT-based session management through localStorage)
     canActivate: [AuthGuard]
->>>>>>> b96ecd8 (feat(edit): Add edit button to all of the users)
   },
   {
     path: 'user/:id/edit',

@@ -1,15 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
   styleUrls: ['app.component.scss'],
   standalone: false,
 })
-export class AppComponent implements OnInit {
-  constructor() {
-
-  }
-  ngOnInit() {
-    localStorage.removeItem('isLoggedIn');
-  }
+export class AppComponent {
+  constructor() {}
 }

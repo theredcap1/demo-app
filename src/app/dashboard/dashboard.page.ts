@@ -18,7 +18,6 @@ export class DashboardPage implements OnInit {
 
     if (!this.data || Object.keys(this.data).length === 0) {
       console.log("No user data found, redirecting to login.");
-      this.router.navigate(['/auth/login']);
     }
   }
 

@@ -27,11 +27,11 @@ export class AuthService {
   }
 
   setUserData(data: any) {
-    this.userData = data;
+    localStorage.setItem('userData', JSON.stringify(data));
   }
 
   getUserData() {
-    return this.userData ?? {};
+    return JSON.parse(localStorage.getItem('userData') || '{}');
   }
   register(user: any): Observable<any> {
     return this.http.post('https://dummyjson.com/users/add', {

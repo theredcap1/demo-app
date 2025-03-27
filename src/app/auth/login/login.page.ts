@@ -35,7 +35,7 @@ export class LoginPage {
       if (this.data) {
         this.auth.setUserData(this.data);
         console.log(this.data);
-        this.session.setSession(this.auth.getUserData().accessToken);
+        this.session.setSession(this.auth.getUserData());
         await this.router.navigate(['/']);
       } else {
         new Error("Invalid response data");

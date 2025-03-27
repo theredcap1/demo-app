@@ -10,8 +10,9 @@
     <br>
     <span *ngIf="userDetails.isMale">He</span><span *ngIf="!userDetails.isMale">She</span> measures {{userDetails.height}} cm and weighs at {{userDetails.weight}} kg
     <br>
-
+    <ion-icon name="trash-outline" style="float: right; margin: 1.5rem; cursor: pointer;" (click)="delete()"></ion-icon>
     <ion-icon name="create-outline" style="float: right; margin: 1.5rem; cursor: pointer;" [routerLink]="'edit'"></ion-icon>
+
   </ion-card-content>
 </ion-card>
 

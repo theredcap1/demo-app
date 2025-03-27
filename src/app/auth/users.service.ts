@@ -34,4 +34,11 @@ export class UsersService {
     });
     console.log("this.users from service", this.users);
   }
+  updateUser(id: number, data: any) {
+    return this.http.put<any>('https://dummyjson.com/users/' + id, data);
+  }
+
+  deleteUser(id: number) {
+    return this.http.delete<any>('https://dummyjson.com/users/' + id);
+  }
 }

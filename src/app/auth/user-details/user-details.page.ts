@@ -38,4 +38,8 @@ export class UserDetailsPage implements OnInit {
     console.log(this.userDetails);
   }
 
+  delete() {
+    this.user.deleteUser(this.id).subscribe(() => this.router.navigate(['home']));
+    console.log("Deleted successfully");
+  }
 }

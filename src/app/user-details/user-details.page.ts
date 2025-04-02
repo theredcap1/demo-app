@@ -33,7 +33,7 @@ export class UserDetailsPage implements OnInit {
   private id : number = 0;
   ngOnInit() {
     this.route.paramMap.subscribe(params => this.id = parseInt(params.get('id') || ''));
-    this.user.fetchUserDetails(this.id).subscribe((res : any) => this.userDetails = res);
+    this.user.fetchUserDetails(this.id).subscribe((res : any) => this.userDetails = {...res, isMale: res.gender.toLowerCase() == 'male'});
   }
 
   alertButtons = [

@@ -9,9 +9,9 @@ import {ToastController} from "@ionic/angular";
 })
 export class UsersService {
 
-  async presentToast(successfullyDeleted: string) {
+  async presentToast(toastMessage: string) {
     const toast = await this.toastController.create({
-      message: successfullyDeleted,
+      message: toastMessage,
       duration: 2000
     });
     await toast.present();

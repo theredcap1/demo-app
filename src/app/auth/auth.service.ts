@@ -29,7 +29,6 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('user_data') || '{}');
   }
   refreshToken() {
-    console.log("we here i guess?");
     return this.http.post('https://dummyjson.com/auth/refresh', {
       refreshToken: this.getRefreshToken(),
       expiresInMins: 36000

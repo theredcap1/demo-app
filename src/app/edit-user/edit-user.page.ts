@@ -44,7 +44,7 @@ export class EditUserPage implements OnInit {
   handleSubmit() {
 
     if (!this.editForm.value.city && !this.editForm.value.address && !this.editForm.value.email && !this.editForm.value.stateCode && !this.editForm.value.university || this.editForm.invalid) {
-      return alert("Please check your data and try again");
+      return this.userService.presentToast("Please check your data and try again");
     }
     console.log(this.editForm.value);
     const {email, university, address, stateCode, city, firstName, lastName} = this.editForm.value;
@@ -62,11 +62,11 @@ export class EditUserPage implements OnInit {
     }
 
 
-    this.userService.updateUser(this.user.id, data).subscribe(
+    return this.userService.updateUser(this.user.id, data).subscribe(
       {
         next: (res) =>
           {
-            alert("Successfully updated!");
+            this.userService.presentToast("Successfully updated!");
             console.log(res);
           },
         error: (error) => console.error(error)

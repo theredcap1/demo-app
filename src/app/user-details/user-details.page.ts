@@ -51,8 +51,6 @@ export class UserDetailsPage implements OnInit {
     }
   ];
   delete() {
-    console.log("ya here fella?");
     this.user.deleteUser(this.id).subscribe(() => this.router.navigate(['home']));
-    console.log("bruh");
   }
 }

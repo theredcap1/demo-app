@@ -42,7 +42,6 @@ export class UsersService {
         });
       });
     });
-    console.log("this.users from service", this.users);
   }
   updateUser(id: number, data: any) {
     return this.http.put<any>('https://dummyjson.com/users/' + id, data);

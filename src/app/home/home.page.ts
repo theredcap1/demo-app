@@ -47,5 +47,4 @@ export class HomePage implements OnInit {
     setTimeout(() => this.handleSearch(),
     1350);
   }
-  protected readonly String = String;
 }

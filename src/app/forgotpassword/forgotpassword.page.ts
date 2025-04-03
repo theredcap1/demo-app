@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "../auth/auth.service";
 import {firstValueFrom} from "rxjs";
 import {Router} from "@angular/router";

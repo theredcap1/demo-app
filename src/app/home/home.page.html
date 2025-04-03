@@ -1,15 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Home</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large" style="color: white;">hme</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
   <ion-grid>
     <ion-searchbar placeholder="Enter name or address" (ionInput)="timeOutSearch()" [(ngModel)]="searchQuery"></ion-searchbar>
     @for (user of this.users; track user.id + " - " + $index) {

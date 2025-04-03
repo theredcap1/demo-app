@@ -16,6 +16,6 @@ export class SessionManagementService {
     localStorage.removeItem(this.sessionKey);
   }
   isAuthenticated() {
-    return !!this.getSession();
+    return !(this.getSession() === undefined);
   }
 }

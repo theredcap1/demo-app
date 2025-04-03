@@ -1,20 +1,30 @@
-<ion-app>
-  <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" type="overlay" style="width: 0" *ngIf="this.router.url !== '/auth/login'">
-      <ion-content>
-        <ion-list>
-          <ion-list-header>Inbox</ion-list-header>
-          <ion-menu-toggle auto-hide="false">
-            <ion-item routerDirection="root" routerLink="/"><ion-label>Home</ion-label></ion-item>
-            <ion-item routerDirection="root" routerLink="/dashboard"><ion-label>Profile</ion-label></ion-item>
-            <ion-item routerDirection="root" routerLink="/change-password"><ion-label>Change Password</ion-label></ion-item>
-          </ion-menu-toggle>
-        </ion-list>
-        <ion-button expand="full" color="light" (click)="logout()">Logout</ion-button>
-      </ion-content>
-    </ion-menu>
-
-    <ion-router-outlet id="main-content"></ion-router-outlet>
-
-  </ion-split-pane>
-</ion-app>
+<ion-menu contentId="main-content" *ngIf="this.session.isAuthenticated()">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Inbox</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item routerLink="">Home</ion-item>
+      <ion-item routerLink="/dashboard">Profile</ion-item>
+      <ion-item routerLink="/change-password">Change Password</ion-item>
+    </ion-list>
+  </ion-content>
+  <ion-footer>
+    <ion-list style="text-align:center">
+      <ion-button expand="block"  (click)="logout()">Logout</ion-button>
+    </ion-list>
+  </ion-footer>
+</ion-menu>
+<div class="ion-page" id="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="ion-padding"><ion-router-outlet></ion-router-outlet></ion-content>
+</div>

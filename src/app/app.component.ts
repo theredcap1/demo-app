@@ -1,6 +1,11 @@
 import {Component} from '@angular/core';
 import {AuthService} from "./auth/auth.service";
 import {Router} from "@angular/router";
+import {SessionManagementService} from "./auth/session-management.service";
+import {Platform} from "@ionic/angular";
+import {StatusBar} from "@capacitor/status-bar";
+import {Capacitor} from "@capacitor/core";
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -8,7 +13,18 @@ import {Router} from "@angular/router";
   standalone: false,
 })
 export class AppComponent {
-  constructor(private auth : AuthService, protected router : Router) {}
+
+  initializeApp() {
+    if (Capacitor.isNativePlatform()){
+      this.platform.ready().then(() => {
+        StatusBar.setOverlaysWebView({overlay: false});
+      }).catch(_ => {
+      });
+    }
+  }
+  constructor(private auth : AuthService, protected router : Router, protected session: SessionManagementService, private platform : Platform) {
+    this.initializeApp();
+  }
   logout() {
     this.auth.logout();
     this.router.navigate(['/auth/login']);

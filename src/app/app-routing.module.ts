@@ -4,6 +4,7 @@ import {AuthGuard} from "./auth/auth.guard";
 import {DashboardPage} from "./dashboard/dashboard.page";
 import {ForgotpasswordPage} from "./forgotpassword/forgotpassword.page";
 import {HomePage} from "./home/home.page";
+import {LoginGuard} from "./login.guard";
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
     loadChildren: async () => {
       const m = await import('./auth/auth.module');
       return m.AuthModule;
-    }
+    },
+    canActivate: [LoginGuard]
   },
   {
     path: 'dashboard',

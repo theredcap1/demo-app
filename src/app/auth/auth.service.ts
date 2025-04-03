@@ -13,7 +13,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<any> {
     return this.http.post('https://dummyjson.com/auth/login', { username, password }).pipe(
-      tap(res => {}),
+      tap(() => {}),
       catchError((error) => {
         console.error("Login failed:", error);
         return throwError(() => new Error("Login request failed"));
@@ -28,6 +28,26 @@ export class AuthService {
   getUserData() {
     return JSON.parse(localStorage.getItem('user_data') || '{}');
   }
+  refreshToken() {
+    console.log("we here i guess?");
+    return this.http.post('https://dummyjson.com/auth/refresh', {
+      refreshToken: this.getRefreshToken(),
+      expiresInMins: 36000
+    }).subscribe((res: any) => {
+      let newData = this.getUserData();
+      const {accessToken, refreshToken} = res
+      newData.accessToken = accessToken;
+      newData.refreshToken = refreshToken;
+      localStorage.setItem('user_data', JSON.stringify(newData));
+      console.log(newData);
+    });
+  }
+
+  getRefreshToken(){
+    return JSON.parse(localStorage.getItem('user_data') || '{}')['refreshToken'];
+  }
+
+
   register(user: any): Observable<any> {
     return this.http.post('https://dummyjson.com/users/add', {
       username: user.username,

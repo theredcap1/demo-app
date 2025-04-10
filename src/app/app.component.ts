@@ -25,8 +25,8 @@ export class AppComponent {
   constructor(private auth : AuthService, protected router : Router, protected session: SessionManagementService, private platform : Platform) {
     this.initializeApp();
   }
-  logout() {
+  async logout() {
     this.auth.logout();
-    this.router.navigate(['/auth/login']);
+    await this.router.navigate(['/auth/login']);
   }
 }

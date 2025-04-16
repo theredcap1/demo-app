@@ -31,14 +31,11 @@ export class AppComponent {
     await this.router.navigate(['/auth/login']);
   }
   async takePic() {
-    alert("here");
     Promise.resolve(CapacitorBarcodeScanner.scanBarcode(
       {hint: CapacitorBarcodeScannerTypeHint.ALL}
     )).then((data) =>
       alert(JSON.stringify(data.ScanResult))
     );
-
-    alert("yo");
   }
 
   protected Capacitor = Capacitor;

@@ -1,21 +1,18 @@
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {AuthGuard} from "./auth/auth.guard";
-import {Injectable} from "@angular/core";
-import {SessionManagementService} from "./auth/session-management.service";
+// login.guard.ts
+
+import { Injectable } from '@angular/core';
+import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { SessionManagementService } from './auth/session-management.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class LoginGuard implements CanActivate {
-  constructor(private auth : AuthGuard, private router : Router, private session : SessionManagementService) {
+  constructor(private router: Router, private session: SessionManagementService) {}
 
-  }
-
-  canActivate(route : ActivatedRouteSnapshot, _state : RouterStateSnapshot) : boolean {
-    console.log(route);
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     if (this.session.isAuthenticated()) {
-      this.router.navigate(["/dashboard"]);
+      this.router.navigate(['/dashboard']);
       return false;
     }
     return true;

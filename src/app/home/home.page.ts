@@ -45,6 +45,6 @@ export class HomePage implements OnInit {
 
   timeOutSearch() {
     setTimeout(() => this.handleSearch(),
-    1350);
+      1350);
   }
 }

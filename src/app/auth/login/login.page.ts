@@ -6,9 +6,6 @@ import { firstValueFrom } from "rxjs";
 import {SessionManagementService} from "../session-management.service";
 import {UsersService} from "../users.service";
 
-import {Geolocation} from "@capacitor/geolocation";
-import {Camera, CameraResultType, CameraPluginPermissions} from "@capacitor/camera";
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -27,20 +24,6 @@ export class LoginPage {
   public data: any = {};
 
   async login() {
-    /*alert("here");
-    const permissionStatus = await Geolocation.checkPermissions();
-    alert(permissionStatus);
-    await Geolocation.getCurrentPosition().then(r => {
-      alert(JSON.stringify(r));
-    });*/
-    alert("nah bro");
-    const image = await Camera.getPhoto({
-      quality: 90,
-      allowEditing: false,
-      resultType: CameraResultType.Uri,
-    })
-    const imageUrl = image.webPath;
-    alert(imageUrl);
     if (this.loginForm.invalid) {
       console.log("Please enter valid credentials.");
       return;
@@ -63,5 +46,4 @@ export class LoginPage {
       console.log(error);
     }
   }
-
 }

@@ -45,9 +45,7 @@ export class UserDetailsPage implements OnInit {
     {
       text: 'Delete',
       role: 'destructive',
-      handler: () => {
-        this.delete();
-      },
+      handler: () => this.delete()
     }
   ];
   delete() {

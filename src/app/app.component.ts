@@ -5,6 +5,7 @@ import {SessionManagementService} from "./auth/session-management.service";
 import {Platform} from "@ionic/angular";
 import {StatusBar} from "@capacitor/status-bar";
 import {Capacitor} from "@capacitor/core";
+import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint} from "@capacitor/barcode-scanner";
 
 @Component({
   selector: 'app-root',
@@ -29,4 +30,16 @@ export class AppComponent {
     this.auth.logout();
     await this.router.navigate(['/auth/login']);
   }
+  async takePic() {
+    alert("here");
+    Promise.resolve(CapacitorBarcodeScanner.scanBarcode(
+      {hint: CapacitorBarcodeScannerTypeHint.ALL}
+    )).then((data) =>
+      alert(JSON.stringify(data.ScanResult))
+    );
+
+    alert("yo");
+  }
+
+  protected Capacitor = Capacitor;
 }

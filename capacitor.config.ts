@@ -8,6 +8,9 @@ const config: CapacitorConfig = {
     StatusBar: {
       style: 'dark'
     }
+  },
+  android: {
+    adbTimeout: 10000
   }
 };
 

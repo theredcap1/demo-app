@@ -5,7 +5,6 @@ import {SessionManagementService} from "./auth/session-management.service";
 import {Platform} from "@ionic/angular";
 import {StatusBar} from "@capacitor/status-bar";
 import {Capacitor} from "@capacitor/core";
-import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint} from "@capacitor/barcode-scanner";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +15,7 @@ import {CapacitorBarcodeScanner, CapacitorBarcodeScannerTypeHint} from "@capacit
 export class AppComponent {
 
   initializeApp() {
-    if (Capacitor.isNativePlatform()){
+    if (Capacitor.isNativePlatform() || window.innerWidth < 768){
       this.platform.ready().then(() => {
         StatusBar.setOverlaysWebView({overlay: false});
       }).catch(_ => {
@@ -30,13 +29,7 @@ export class AppComponent {
     this.auth.logout();
     await this.router.navigate(['/auth/login']);
   }
-  async takePic() {
-    Promise.resolve(CapacitorBarcodeScanner.scanBarcode(
-      {hint: CapacitorBarcodeScannerTypeHint.ALL}
-    )).then((data) =>
-      alert(JSON.stringify(data.ScanResult))
-    );
-  }
 
   protected Capacitor = Capacitor;
+  menuType: string = 'overlay';
 }

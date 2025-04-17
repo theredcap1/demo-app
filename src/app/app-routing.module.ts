@@ -47,6 +47,12 @@ const routes: Routes = [
     loadChildren: () => import('./edit-user/edit-user.module').then( m => m.EditUserPageModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'scanner',
+    loadChildren: () => import('./scanner/scanner.module').then( m => m.ScannerPageModule),
+    canActivate: [AuthGuard]
+  },
+
 ];
 
 @NgModule({

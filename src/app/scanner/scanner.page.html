@@ -1,0 +1,7 @@
+<div id="content">
+  <h6 id="main">Click on the button below to scan your QR code</h6>
+  <ion-button (click)="takePic()">Scan</ion-button>
+
+  <h6 id="result" *ngIf="!!scanResult">Your scan result is <a href="{{scanResult}}">{{scanResult}}</a></h6>
+</div>
+

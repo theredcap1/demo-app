@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content" *ngIf="this.session.isAuthenticated()">
+<ion-menu [type] = "menuType" contentId="main-content" *ngIf="this.session.isAuthenticated()">
   <ion-header>
     <ion-toolbar>
       <ion-title>Inbox</ion-title>
@@ -9,6 +9,7 @@
       <ion-item routerLink="">Home</ion-item>
       <ion-item routerLink="/dashboard">Profile</ion-item>
       <ion-item routerLink="/change-password">Change Password</ion-item>
+      <ion-item routerLink="/scanner" *ngIf="Capacitor.isNativePlatform()">Scan</ion-item>
     </ion-list>
   </ion-content>
   <ion-footer>
@@ -24,9 +25,6 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
       <ion-title></ion-title>
-      <ion-icon name="camera-outline" style="font-size: 24px; float: right; margin-right: 10px" *ngIf="Capacitor.isNativePlatform()" (click)="takePic()">
-
-      </ion-icon>
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding"><ion-router-outlet></ion-router-outlet></ion-content>

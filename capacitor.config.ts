@@ -10,7 +10,7 @@ const config: CapacitorConfig = {
     }
   },
   android: {
-    adbTimeout: 10000
+
   }
 };
 
